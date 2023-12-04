@@ -1,10 +1,16 @@
 #include <stdio.h>
-#include "fichier.h"
-
+#include "List.h"
+#include "Contact.h"
 int main() {
 
     int val,lev;
-    list();
+    //Create_List();
+    /*char *chaine;
+    int i=0;
+    chaine = scanString();
+    PrintString(chaine);*/
+    agenda *A = Create_Agenda();
+    Create_Contact(A);
 
 /*
     printf("Liste 2 \n");
