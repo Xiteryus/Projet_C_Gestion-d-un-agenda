@@ -33,10 +33,10 @@ void Display_Cell(t_d_list* , int);
 void Display_List(t_d_list*);
 
 //creer la liste
-void Create_List();
+t_d_list *Create_List(int);
 
 //recherche d'une valeur dans la liste
-void Classic_Research(t_d_list *,int);
-void Dichotomy_Research(t_d_list *l,int);
+int Classic_Research(t_d_list *,int);
+int Dichotomy_Research(t_d_list *l,int);
 
 #endif //PROJET_V1_FICHIER_H

@@ -1,7 +1,3 @@
-//
-// Created by samue on 03/12/2023.
-//
-
 #ifndef PROJET_V1_CONTACT_H
 #define PROJET_V1_CONTACT_H
 
@@ -9,63 +5,82 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-//Structures :
 
-typedef struct Contact
-{
+// Structures :
+
+
+//----------------------------------------------------------------------
+
+typedef struct Contact {
     char *nom;
     char *prenom;
-}contact;
+} Contact;
+//----------------------------------------------------------------------
 
-//Rendez-Vous
-typedef struct Date
-{
+typedef struct Date {
     int jour;
-    int heure;
+    int mois;
     int annee;
-}date;
+} Date;
 
-typedef struct Heure
-{
+typedef struct Heure {
     int heure;
     int minute;
-}heure;
+} Heure;
 
-typedef struct rendez_vous
-{
-    struct Date date;
-    struct Heure heure;
-    struct Heure dure_rdv;
+typedef struct RendezVous {
+    Date date;
+    Heure heure;
+    Heure dure_rdv;
     char *objet;
-}rdv;
-//Agenda
-typedef struct Agenda
-{
-    contact contact;
-    rdv *rendezvous_list;
-    struct s_agenda_entry *next;
-} agenda;
+    struct RendezVous *next;  // Champ pour lier les rendez-vous
+} Rdv;
+//----------------------------------------------------------------------
 
-//List à contact
-typedef struct Liste_Contact
-{
+typedef struct AgendaEntry {
+    Contact *contact;
+    Rdv *rendezvous_list;
+    struct AgendaEntry *next;
+} AgendaEntry;
+
+typedef struct ListeContact {
     int max_level;
-    contact **t_heads;
+    AgendaEntry **next;
+} ListeContact;
 
-} list_contact;
+//----------------------------------------------------------------------
+// Fonctions :
 
-//Fonction :
+Contact *CreateContact(const char *nom, const char *prenom);
+ListeContact CreateListeContact(int n);
+AgendaEntry *CreateAgendaEntry();
+Rdv CreateRDV(Date, Heure, Heure, char *);
+Date CreateDate(int a, int j, int h);
+Heure CreateHeure(int h, int m);
 
-void Create_Contact(agenda*);
-list_contact Create_List_Contact(int n);
-agenda *Create_Agenda();
-void Insert_Contact_To_Agenda(list_contact*,contact*);
+//----------------------------------------------------------------------
+
+Rdv Saisir_RDV();
+
+//----------------------------------------------------------------------
+
+void ContactResearch(ListeContact *liste_contact, const char *n, const char *p);
+void AddContactToAgenda(ListeContact *liste_contact, const char *nom, const char *prenom);
+void AddRDVToContact(ListeContact *liste_contact, const char *n, const char *p, Rdv RDV);
+//----------------------------------------------------------------------
+
 char *scanString(void);
 void *PrintString(char *c);
 
+//----------------------------------------------------------------------
 
+void DisplayContact(ListeContact *liste_contact);
+void DisplayAgenda(AgendaEntry *);
+void DisplayListeContact(ListeContact *liste_contact);
+void Display_RDV(ListeContact *l, const char *n, const char *p);
 
+//----------------------------------------------------------------------
 
-
-
+void Create_Contacts_From_Files(ListeContact *liste_contact);
+void Save_RDV_In_File(ListeContact *liste_contact,const char *n, const char *p);
 #endif //PROJET_V1_CONTACT_H
