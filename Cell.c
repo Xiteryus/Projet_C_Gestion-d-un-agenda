@@ -9,7 +9,7 @@
 
 //Fonction qui cree une cellule
 t_d_cell* create_cell(int val,int lev) {
-    t_d_cell *s = (t_d_cell *) malloc(sizeof(t_d_cell));
+    t_d_cell *s = (t_d_cell *) malloc(sizeof(t_d_cell));// Alloue de la mémoire pour la structure Cell
     s->value = val;
     s->level = lev;
     s->t_level = (t_d_cell **) malloc(sizeof(t_d_cell *) * lev);

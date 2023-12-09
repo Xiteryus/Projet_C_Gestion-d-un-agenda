@@ -1,23 +1,14 @@
-Date : 08/06/2005
-Heure : 02:50
-Duree du rendez-vous : 05:50
-Objet : dfdfd
 
-Nom a | Prenom a 
-Date : 08/06/2005
-Heure : 02:50
-Duree du rendez-vous : 05:50
-Objet : gfddfgdfg
+Nom LEBRIS | Prenom Mael 
+Date : 16/12/2023
+Heure : 15:30
+Duree du rendez-vous : 02:00
+Objet : DE Probabilite
 
-Nom a | Prenom a 
-Date : 08/06/2005
-Heure : 02:50
-Duree du rendez-vous : 05:50
-Objet : ff
+Nom Saade | Prenom Paul 
+Date : 16/12/2023
+Heure : 15:30
+Duree du rendez-vous : 02:00
+Objet : DE Probabilite
 
-Nom a | Prenom a 
-Date : 08/06/2005
-Heure : 02:50
-Duree du rendez-vous : 05:50
-Objet : grdg
 

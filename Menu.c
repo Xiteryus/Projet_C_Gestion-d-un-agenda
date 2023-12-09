@@ -16,11 +16,13 @@ void Menu() {
 
         switch (x) {
             case 1:
+                //afficher le menu II
                 MenuII();
                 break;
 
 
             case 2 :
+                //afficher le menu III
                 MenuIII();
                 break;
 
@@ -56,17 +58,20 @@ void MenuII(){
 
         switch(y){
             case 1:
+                //crée une liste à n niveaux
             printf("Entrez la valeur n : \n");
             scanf(" %d", &x);
             l =Create_List(x);
                 break;
             case 2:
+                //affiche la liste
                 if (l==NULL)
                     break;
                 printf("LISTE : \n");
                 Display_List(l);
                 break;
             case 3 :
+                //Recherche classique de valeur
                 if (l==NULL)
                     break;
                 printf("Entrez la valeur a rechercher : \n");
@@ -77,17 +82,19 @@ void MenuII(){
                     printf("Position %d ", Classic_Research(l,rer));
                 break;
             case 4:
+                //Recherche Dichotomique de valeur
                 if (l==NULL)
                     break;
                 printf("Entrez la valeur a rechercher : \n");
                 scanf(" %d", &rer);
-                if(Dichotomy_Research(l,rer)>=0)
-                    printf("Position %d",Dichotomy_Research(l,rer)-1);
+                if(Dichotomy_Research(l,rer)==1)
+                    printf("Valeur Trouvee");
                 else
                     printf("Valeur Introuvable ");
                 break;
 
             case 5:
+                //Recherche classique pour un grand nombre de valeur
                 if (l==NULL)
                     break;
                 int t = pow(2,x)-1;
@@ -103,6 +110,7 @@ void MenuII(){
                 break;
 
             case 6:
+                //Recherche Dichotomique pour un grand nombre de valeur
                 if (l==NULL)
                     break;
                 t = pow(2,x)-1;
@@ -133,7 +141,9 @@ void MenuII(){
 void MenuIII(){
 
     ListeContact liste_contact = CreateListeContact(1);
+    //Fonction qui ne marche pas :
     //Create_Contacts_From_Files(&liste_contact);
+
     // Menu
     int choix;
     do {
@@ -142,8 +152,12 @@ void MenuIII(){
         printf("2. Afficher les rendez-vous d'un contact\n");
         printf("3. Creer un contact\n");
         printf("4. Creer un rendez-vous pour un contact\n");
-        printf("5. Pour afficher la liste des contacts\n");
+        printf("5. Afficher la liste des contacts\n");
         printf("6. Sauvegarder RDV\n");
+        printf("7. Lire sauvegarde RDV\n");
+        printf("8. Supprimer un contact\n");
+        printf("9. Supprimer un RDV d'un contact\n");
+
         printf("0. Retour MENU\n");
 
         printf("Votre choix : ");
@@ -152,6 +166,7 @@ void MenuIII(){
 
         switch (choix) {
             case 1:
+                //Rechercher un contact, nous n'avons pas fait l'option bonus avec la completion automatique
                 printf("Entrez le nom du contact : ");
                 char *nomRecherche = scanString();
                 printf("Entrez le prenom du contact : ");
@@ -160,6 +175,7 @@ void MenuIII(){
                 break;
 
             case 2:
+                //Afficher rdv d'un contact
                 printf("Entrez le nom du contact : ");
                 char *nomAffichage = scanString();
                 printf("Entrez le prenom du contact : ");
@@ -169,6 +185,7 @@ void MenuIII(){
                 break;
 
             case 3:
+                //Crée un nouveau contact
                 printf("Entrez le nom du nouveau contact : ");
                 char *nomNouveauContact = scanString();
                 printf("Entrez le prénom du nouveau contact : ");
@@ -177,12 +194,11 @@ void MenuIII(){
                 break;
 
             case 4:
+                //Saisir un rdv pour un contact
                 printf("Entrez le nom du nouveau contact : ");
                 char *nomNouveau1Contact = scanString();
                 printf("Entrez le prénom du nouveau contact : ");
                 char *prenomNouveau1Contact = scanString();
-                char *n = scanString();
-                //Rdv rdv = CreateRDV(CreateDate(2005,6,8), CreateHeure(2,50),CreateHeure(5,50), n) ;
                 AddRDVToContact(&liste_contact,nomNouveau1Contact,prenomNouveau1Contact,Saisir_RDV());
                 break;
 
@@ -192,6 +208,7 @@ void MenuIII(){
                 break;
 
             case 6:
+                //Sauvegarder les rdv d'un contact dans un fichier
                 printf("Entrez le nom du contact : ");
                 char *nom = scanString();
                 printf("Entrez le prenom du contact : ");
@@ -199,6 +216,27 @@ void MenuIII(){
                 FILE *f = fopen("C:\\Users\\samue\\CLionProjects\\Projet_v1\\Sauvegarde_RDV.txt", "a");
                 Save_RDV_In_File(&liste_contact, nom, prenom);
                 fclose(f);
+                break;
+
+            case 7:
+                Print_RDV();
+                break;
+
+            case 8:
+                //Supprimer Contact
+                printf("Entrez le nom du contact a supprimer : ");
+                char *n = scanString();
+                printf("Entrez le prenom du contact a supprimer : ");
+                char *p = scanString();
+                RemoveContactFromContactList(&liste_contact,n,p);
+                break;
+            case 9:
+                //supprime 1er rdv d'un contact
+                printf("Entrez le nom du contact a supprimer : ");
+                char *n1 = scanString();
+                printf("Entrez le prenom du contact a supprimer : ");
+                char *p1 = scanString();
+                RemoveRDVtoContact(&liste_contact,n1,p1);
                 break;
 
             case 0:
