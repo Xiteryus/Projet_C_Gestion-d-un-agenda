@@ -128,20 +128,19 @@ t_d_list *Create_List(int valeur) {
 }
 
 //Recherche dichotomique pour une valeur dans une liste
-int Dichotomy_Research(t_d_list *l, int x) {
-    int level = l->max_level - 1;
-    t_d_cell *current = l->t_heads[level];//on commence par partir du niveau le plus haut dans la liste
+int Dichotomy_Research(t_d_list *l,int x){
+    int level = l->max_level -1;
+    t_d_cell  **c = l->t_heads;
 
-    while (level >= 0 && current != NULL) {
-        if (current->value == x) {
+    while (level>= 0 && c != NULL){
+        t_d_cell *tmp = c[level];
+        if (tmp->value == x){
             return 1;//on retourne si la valeur est dans la liste
         }
-        if (current->t_level[level] != NULL && current->t_level[level]->value <= x) {
-            current = current->t_level[level];
-        } else {
-            level--;//on descend d'un niveau
-
+        if(tmp->value < x){
+            c = tmp->t_level;
         }
+        level--;//on descend d'un niveau
     }
     return 0;//on retourne si la valeur n'est pas dans la liste
 }
